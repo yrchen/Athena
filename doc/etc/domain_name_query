@@ -1,0 +1,22 @@
+#  ◢◣◢◣  松山高中松江水綠
+#    ◢██◣/home/bbs/etc/domain_name_query
+#  ──────────────────────────────────────
+# 說明：本站線上使用者列表的「上站地點」中文說明
+#       僅限列出松山高中校內網域
+# 執行： (BBS 程式內建功能)
+#  ──────────────────────────────────────
+#  ──────────────────────────────────────
+vlan4.sssh.tp.edu.tw    松高電腦教室(四)
+c5lin.sssh.tp.edu.tw    松高電腦教室(五)
+
+# 雅典娜主機
+#localhost              Athena.ATCity.org
+localhost               ATCity 雅典娜
+Athena.ATCity.org       ATCity 雅典娜
+Ithica.ATCity.org       ATCity 艾西卡
+
+# 高中/職
+
+# 大學
+
+# ISP

@@ -1,0 +1,49 @@
+#  ◢◣◢◣  松山高中松江水綠
+#    ◢██◣/home/bbs/etc/spam-list
+#  ──────────────────────────────────────
+# 說明：本站不接受來自下列網域或 E-mail 的信件或新聞群組文章；
+#       本站使用者亦不能以下列網域或 E-mail 的信箱註冊在使用者資料
+#  ◢◣拒絕接受的網域
+#   ──────────────────────────────────────
+.com
+.com.tw
+.com.hk
+.co.jp
+.co.uk
+.cc
+admail.acer.net
+crosswinds.net
+dwp.net
+freedom2surf.net
+graffiti.net
+iwant-in.net
+lin.arch.net.tw
+royal.net
+usa.net
+yes.net.tw
+your.domain
+168.net
+
+#  ◢◣免費 E-mail 信箱
+#  ──────────────────────────────────────
+mail.educities.edu.tw
+
+#  ◢◣拒絕接受的 E-mail 或垃圾信發信者
+#  ──────────────────────────────────────
+Carlos.bbs@SungShan.twbbs.org
+carlos.bbs@SungSung.dragon2.net
+shadowmoon.bbs@SungShan.twbbs.org
+
+#  ◢◣新聞群組中行為惡劣的發信者
+#  ──────────────────────────────────────
+dohan.bbs@firebird.cs.ccu.edu.tw
+gba.bbs@bbs.tku.edu.tw
+kingram.bbs@bbs.csie.nctu.edu.tw
+oasisguava.bbs@bbs.nsysu.edu.tw
+oasisguava.bbs@bbs.ntu.edu.tw
+turboman.bbs@bbs.csie.nctu.edu.tw
+turboman.bbs@bbs.cs.nthu.edu.tw
+Jiapie.bbs@ms.twbbs.org
+pancorp@ethome.net.tw
+call88@ms41.hinet.net
+escortcat.bbs@cis.nctu.edu.tw

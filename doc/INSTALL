@@ -1,0 +1,29 @@
+
+注意: 本文件適合第一次安裝 BBS
+
+1. 首先在作業系統建立 BBS 使用者的帳號 
+   (以下假定為 bbs, 家目錄假定為 /home/bbs/)
+
+2. 接著下載 BBS code, 解壓縮完應該會出現 /home/bbs/src/ 目錄
+   (以下都假設在 家目錄 下執行, 本程式碼目錄表示為 src/)
+ 
+3. 修改 src/include/config.h
+
+5. 到 src/util/ 執行 make clean all
+
+6. 執行 ./initbbs 建立 BBS 目錄結構
+
+7. 將 src/doc/etc/ 複製到 etc/
+
+8. 到 src/ 執行 make clean all install
+
+9. 到 bin/ 下 執行 ./camera 
+
+10.使用 root 執行 /home/bbs/bin/mbbsd 23 (假設要開在 port 23)
+
+11.使用 telnet 連線軟體連線, 出現畫面後使用 new 產生 SYSOP 和 guest 帳號
+
+12.到 bin/ 執行 ./setuser 11111111111111111111111111111111 SYSOP
+		./setuser 00000000000000000000000000000000 guest
+
+13.修改 src/doc/crontab 並執行 crontab -e src/doc/crontab

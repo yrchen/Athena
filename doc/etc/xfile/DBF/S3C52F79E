@@ -1,0 +1,145 @@
+#◎ 不單純只是 BBS 的 BBS －  雅典娜  ◎ (athena.twbbs.org) Power by [AT]Clan
+#
+#         ╭───╮┌───┐┌─┐─┐┌───┐┌─┐─┐╭───╮
+#         │█◤█││███││█│█││█◤█││█◣█││█◤█│
+#         │█◢█│└┐█┌┘│█◢█││█◢┐┘│█◥█││█◢█│
+#         │█◤█│  │█│  │█◤█││█◤┘┐│█│█││█◤█│
+#         │█│█│  │█│  │█│█││█◢█││█│█││█│█│
+#         └─┘─┘  └─┘  └─┘─┘└───┘└─┘─┘└─┘─┘
+#
+###############################################################################
+#
+# BBS Crontab：create by Chen YuRen [陳禹任]-[AT]Clan Leader
+#
+###############################################################################
+
+#
+# 系統檔案清除、備份
+#
+###############################################################################
+
+# 每小時備份看板、使用者資料一次
+0 * * * * tar cszf /home/bbs/backup/pwd/pwd_hr`date +\%H`.tgz .PASSWDS
+0 * * * * tar cszf /home/bbs/backup/brd/brd_hr`date +\%H`.tgz .BOARDS
+                                                                                  
+# 每週日早上，將 BBS 系統中長度為零的檔案砍掉
+40 5 * * 0 /usr/bin/find /home/bbs/home -size 0 -exec /bin/rm -f {} \;
+40 5 * * 0 /usr/bin/find /home/bbs/boards -size 0 -exec /bin/rm -f {} \;
+40 5 * * 0 /usr/bin/find /home/bbs/man -size 0 -exec /bin/rm -f {} \;
+
+# 每週一早上，將 BBS home 中超過七天的chatlog & talklog & buf的檔案砍掉                                                                                  
+30 4 * * 1 /usr/bin/find /home/bbs/home/ \! -ctime 7 \( -name chat_\* -o -name talk_\* -o -name ve_\* -o -name .DIR.\* -o -name SR.\* -o \) | xargs rm -f
+
+# 每週三早上，將 BBS board/man 中超過三天的 .DIR.* & SR.* 砍掉
+30 5 * * 3 /usr/bin/find /home/bbs/board/ \! -ctime 3 \( -name .DIR.\* -o -name SR.\* -o \) | xargs rm -f
+30 5 * * 3 /usr/bin/find /home/bbs/man/ \! -ctime 3 \( -name .DIR.\* -o \) | xargs rm -f
+
+# 每天固定備份 etc/ home/ boards/ man/ src/ 五個主要目錄
+0  2 * * * tar cszf /home/bbs/backup/etc.tgz /home/bbs/etc
+0  3 * * * tar cszf /home/bbs/backup/home.tgz /home/bbs/home
+0  4 * * * tar cszf /home/bbs/backup/boards.tgz /home/bbs/boards
+0  5 * * * tar cszf /home/bbs/backup/man.tgz /home/bbs/man
+30 5 * * * tar cszf /home/bbs/backup/src/src`date +%m%d`.tgz src/
+0  0 * * * cp -f /usr/home/bbs/.PASSWDS /usr/home/bbs/.PASSWDS.yes
+0  0 * * * cp -f /usr/home/bbs/.BOARDS /usr/home/bbs/.BOARDS.yes
+0  0 * * * cat /home/bbs/innd/bbslog > /home/bbs/innd/bbslog.yes ; cat /dev/null > /home/bbs/innd/bbslog
+
+#
+# 轉信
+#
+###############################################################################
+
+* * * * *    innd/bbsnnrp news.starbbs.org innd/active.SR >> innd/bbsnnrp.log
+*/10 * * * * innd/bbsnnrp news.wdbbs.net innd/active.WD >> innd/bbsnnrp.log
+*/10 * * * * innd/bbsnnrp news.yzu.edu.tw innd/active.WindTop >> innd/bbsnnrp.log
+*/10 * * * * innd/bbsnnrp news.tfcis.org innd/active.TFCIS >> innd/bbsnnrp.log
+*/10 * * * * innd/bbsnnrp news.ttsh.tp.edu.tw innd/active.TTSH >> innd/bbsnnrp.log
+*/20 * * * * innd/bbsnnrp news.math.nctu.edu.tw innd/active.MATH >> innd/bbsnnrp.log
+*/10 * * * * innd/bbsnnrp news.scouting.idv.tw innd/active.ATS >> innd/bbsnnrp.log
+* * * * * innd/bbslink /home/bbs
+
+#
+# 一般工作
+#
+###############################################################################
+
+#1,11,21,31,41,51 * * * * ps aux | awk '$3 > 2 {print $2}' | xargs kill -9
+1,11,21,31,41,51 * * * * kill -9 `top | grep mbbsd |grep RUN | awk '{print $1}'`
+0 * * * * /home/bbs/bin/camera
+10,30,50 * * * * /usr/home/bbs/bin/admin
+0 0 * * * cp -f /usr/home/bbs/.zero /usr/home/bbs/.maxtoday
+2 0 * * * /usr/home/bbs/bin/birth
+30 0,12 * * * /home/bbs/bin/openticket
+#0 6 * * * /usr/home/bbs/bin/shutdownbbs
+50 1 * * * /home/bbs/bin/diskuse.sh > /dev/null 2>&1
+0 2 * * *  /usr/home/bbs/bin/expire > /dev/null 2>&1
+10 2 * * * /usr/home/bbs/bin/mandex > /dev/null 2>&1
+2 0 * * *  /usr/home/bbs/bin/delnote
+0 * * * *  /usr/home/bbs/bin/account
+3 * * * *  /usr/home/bbs/bin/topboard 100 /usr/home/bbs/etc/topboard
+4 * * * *  /usr/home/bbs/bin/waterboard
+#4 * * * * /usr/home/bbs/bin/poststat /usr/home/bbs
+#5 * * * * /usr/home/bbs/bin/poststatclass /usr/home/bbs
+1 0 * * *  /usr/home/bbs/bin/gnp
+59 23 * * 6 /home/bbs/bin/allgoldexpire -g > /home/bbs/log/tax.log
+
+#
+# 系統統計資料
+#
+###############################################################################
+
+0 0 * * *  /usr/home/bbs/bin/horoscope
+0 0 * * *  /usr/home/bbs/bin/sexcount
+0 0 * * *  /usr/home/bbs/bin/yearsold
+#3 0 * * *  /usr/home/bbs/bin/bm_check
+#4 * * * *  /usr/home/bbs/bin/poststat /home/bbs
+#5 * * * *  /usr/home/bbs/bin/poststatclass /home/bbs
+
+#
+# 使用者排行榜
+#
+###############################################################################
+
+15 0,6,12,18 * * * /usr/home/bbs/bin/toplogin 100 /usr/home/bbs/etc/toplogin
+15 * * * * /usr/home/bbs/bin/toplogin 18 /usr/home/bbs/etc/toplogin18
+20 0,6,12,18 * * * /usr/home/bbs/bin/toptime 100 /usr/home/bbs/etc/toptime
+20 * * * * /usr/home/bbs/bin/toptime 18 /usr/home/bbs/etc/toptime18
+25 0,6,12,18 * * * /usr/home/bbs/bin/toppost 100 /usr/home/bbs/etc/toppost
+25 * * * * /usr/home/bbs/bin/toppost 18 /usr/home/bbs/etc/toppost18
+35 0,6,12,18 * * * /usr/home/bbs/bin/topmsg 100 /usr/home/bbs/etc/topmsg
+35 * * * * /usr/home/bbs/bin/topmsg 18 /usr/home/bbs/etc/topmsg18
+45 0,6,12,18 * * * /usr/home/bbs/bin/topquery 100 /usr/home/bbs/etc/topquery
+45 * * * * /usr/home/bbs/bin/topquery 18 /usr/home/bbs/etc/topquery18
+50 0,6,12,18 * * * /usr/home/bbs/bin/topmoney 100 /usr/home/bbs/etc/topmoney
+50 0,6,12,18 * * * /usr/home/bbs/bin/topgold 100 /usr/home/bbs/etc/topgold
+50 0,6,12,18 * * * /usr/home/bbs/bin/toplimit 100 /usr/home/bbs/etc/toplimit
+
+#
+#  使用者列表
+#
+###############################################################################
+
+30 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS a20 r8  i12 j35 | sort > /usr/home/bbs/man/UL/ARIJ
+30 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS a20 r8  i12 m35 | sort > /usr/home/bbs/man/UL/ARIM
+30 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS a20 r8  i12 h35 | sort > /usr/home/bbs/man/UL/ARIH
+31 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS r8  a20 i12 j35 | sort > /usr/home/bbs/man/UL/RAIJ
+31 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS r8  a20 i12 m35 | sort > /usr/home/bbs/man/UL/RAIM
+31 12 * * * /usr/home/bbs/bin/showuser /usr/home/bbs/.PASSWDS i8  r12 a20 j35 | sort > /usr/home/bbs/man/UL/IRAJ
+35 4 * * *  /usr/home/bbs/bin/showmgr  /usr/home/bbs/.PASSWDS i12 r8 | sort > /usr/home/bbs/etc/BL
+35 4 * * *  /usr/home/bbs/bin/showclock /usr/home/bbs/.PASSWDS i12 r8 | sort > /usr/home/bbs/etc/CLOCK
+35 4 * * *  /usr/home/bbs/bin/showfrom /usr/home/bbs/.PASSWDS i12 r8 | sort > /usr/home/bbs/etc/FROM
+
+#
+# 系統整理
+#
+###############################################################################
+
+0 * * * *  rm /usr/home/bbs/innd/*.*.lock
+0 0 * * * rm /usr/home/bbs/*.core
+0 0 2 * * rm /usr/home/bbs/log/*.log ; > /dev/null 2>&1
+1 1 * * * rm /usr/home/bbs/*.core > /dev/null 2>&1
+1 1 * * * rm /usr/home/bbs/adm/* > /dev/null 2>&1
+2 1 1 * * rm -R /usr/home/bbs/tmp/* > /dev/null 2>&1
+1 1 * * * rm /usr/home/bbs/mbox_sent > /dev/null 2>&1
+1 1 * * * rm /usr/home/bbs/logins.bad > /dev/null 2>&1
+1 1 * * * rm /usr/home/bbs/ussongs > /dev/null 2>&1

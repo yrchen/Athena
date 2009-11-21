@@ -1,0 +1,30 @@
+#  ◢◣◢◣  松山高中松江水綠
+#    ◢██◣/home/bbs/etc/spam-list
+#  ──────────────────────────────────────
+#  說明：本站拒絕接受來自下列網域或 E-mail 的信件；
+#        本站使用者不能以下列網域或 E-mail 的信箱註冊在使用者資料
+
+#  ◢◣拒絕接受的網域
+#  ──────────────────────────────────────
+.com
+.com.tw
+.com.hk
+.co.jp
+.co.uk
+.cc
+admail.acer.net
+bstec.net.tw
+geocities.com
+
+#  ◢◣免費 E-mail 信箱
+#  ──────────────────────────────────────
+mail.educities.edu.tw
+
+#  ◢◣垃圾 E-mail 來源
+#  ──────────────────────────────────────
+ctl67412@sayhi.net
+ekdixtosr@ms51.hinet.net
+7OyzDi9P@ksmail.seed.net.tw
+Et0OafJ67dimuLG@mars.seed.net.tw
+yEhBc0ZkzL@tpts7.seed.net.tw
+QHsMe@mail.seeder.net.tw
