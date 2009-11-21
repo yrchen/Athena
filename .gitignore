@@ -1,6 +1,8 @@
 .last_mbbsd
+# binary file
 *.o
 *.so
 */*.o
 */*.so
-
+# backup file
+*.old
