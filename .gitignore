@@ -1,0 +1,6 @@
+.last_mbbsd
+*.o
+*.so
+*/*.o
+*/*.so
+
