@@ -1,4 +1,4 @@
-ps -ax | grep mbbsd | awk '{print $1}' | xargs kill -9
+ps -aux | grep mbbsd | awk '{print $1}' | sudo xargs kill -9
 ipcrm -M 1515
 ipcrm -M 1517
 ipcrm -M 1519
