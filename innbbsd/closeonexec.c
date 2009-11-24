@@ -19,7 +19,7 @@
 #if defined(__linux__) && (__GLIBC__ != 2)
 #include <bsd/sgtty.h>
 #else
-//#include <sgtty.h>
+#include <sgtty.h>
 #endif
 
 /*
