@@ -2,3 +2,8 @@ Athena Bulletin Board System
 http://athena.atcity.org/
 
 All codes contain Chinese Big5 message.
+
+程式碼分成三個 branch
+* master -> 目前雅典娜使用的程式碼
+* 4.x -> 在 FreeBSD 4.x 上面編譯的版本
+* 6.x -> 在 FreeBSD 6.x 上面編譯的版本
