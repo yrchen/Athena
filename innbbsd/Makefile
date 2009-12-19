@@ -20,7 +20,7 @@ BBS_SRC = /home/bbs/src/WD
 TARGET  = $(INNBBSD) $(BBSNNRP) $(BBSLINK) $(BBSLINK2)
 #TARGET  = $(INNBBSD) $(BBSNNRP) $(BBSLINK)
 ####################################################
-CC=gcc34
+CC=gcc
 INSTALL=cp
 #
 #OPT= -g -pg 

@@ -11,7 +11,7 @@ BBSHOME = /home/bbs
 # FreeBSD 3.x 4.x
 # ------------------------------------------------------
 OS_DEF	= -DBSD44 #-DTWO_LONGJMP_ARGS 
-CC	= gcc34
+CC	= gcc
 CFLAGS	= -O2 -Wunused -I../include -pipe -fomit-frame-pointer -s #-I/usr/local/include#-g -ggdb
 LDFLAGS	= -lcrypt -lcompat -lkvm -lm -L../lib -ldao -export-dynamic #-L/usr/local/lib -liconv
 CPROTO	= cproto -E"gcc -pipe -E -I../include"

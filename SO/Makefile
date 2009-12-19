@@ -11,7 +11,7 @@ BBSHOME = ../..
 # FreeBSD 3.x, Linux
 # ------------------------------------------------------
 OS_DEF	= -DBSD44 -DTWO_LONGJMP_ARGS 
-CC	= gcc34
+CC	= gcc
 CFLAGS	= -O2 -Wunused -I../include -pipe -fomit-frame-pointer -g
 LDFLAGS	= -lcrypt -lcompat -L../lib -ldao -export-dynamic
 

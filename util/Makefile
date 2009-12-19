@@ -8,7 +8,7 @@
 BBSHOME=../..
 
 # For FreeBSD
-CC	= gcc34
+CC	= gcc
 CFLAGS	= -O -DBSD44 -pipe -fomit-frame-pointer -I../include -I../WD -D_BBS_UTIL_C_
 LDFLAGS	= -s -L../lib -ldao -lcrypt
 
