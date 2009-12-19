@@ -25,7 +25,7 @@ INSTALL=cp
 #
 #OPT= -g -pg 
 OPT= -O2 -pipe -fomit-frame-pointer -ggdb -I/usr/local/include -Werror
-LDFLAGS = -L../lib -ldao -lcrypt #-L/usr/local/lib -liconv
+LDFLAGS = -L../lib -ldao -lcrypt -L/usr/local/lib -liconv
 
 # You must choose at least one: PhoenixBBS, PalmBBS, PivotBBS, SecretBBS 
 # or PowerBBS
