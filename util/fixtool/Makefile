@@ -5,12 +5,12 @@
 #  create : 95/03/29				 	  #
 #  update : 95/12/15				 	  #
 # ------------------------------------------------------- #
-SRCHOME=../..
+BBSHOME=../../..
 
 # For FreeBSD
 CC	= gcc
-CFLAGS	= -O2 -DBSD44 -pipe -fomit-frame-pointer -I$(SRCHOME)/include -I$(SRCHOME)/WD -D_BBS_UTIL_C_
-LDFLAGS	= -s -L$(SRCHOME)/lib -ldao -lcrypt
+CFLAGS	= -O2 -DBSD44 -pipe -fomit-frame-pointer -I../../include -I../../WD -D_BBS_UTIL_C_
+LDFLAGS	= -s -L../../lib -ldao -lcrypt
 
 # For SunOS 5.6
 #CC	= gcc
