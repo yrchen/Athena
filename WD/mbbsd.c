@@ -252,7 +252,7 @@ multi_user_check()
 /* bad login */
 /* --------- */
 
-static char	str_badlogin[] = "logins.bad";
+static char	str_badlogin[] = "log/logins.bad";
 
 static void
 logattempt(char *uid, char type)
